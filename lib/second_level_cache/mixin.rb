@@ -57,23 +57,24 @@ module SecondLevelCache
     end
 
     def second_level_cache_key
-      klass.second_level_cache_key(id)
+      base_klass.second_level_cache_key(id)
     end
 
-    def klass
+    def base_klass
       self.class.base_class
     end
 
     def expire_second_level_cache
-      return unless klass.second_level_cache_enabled?
+      return unless base_klass.second_level_cache_enabled?
+
       SecondLevelCache.cache_store.delete(second_level_cache_key)
     end
 
     def write_second_level_cache
-      return unless klass.second_level_cache_enabled?
+      return unless base_klass.second_level_cache_enabled?
 
       marshal = RecordMarshal.dump(self)
-      expires_in = klass.second_level_cache_options[:expires_in]
+      expires_in = base_klass.second_level_cache_options[:expires_in]
       SecondLevelCache.cache_store.write(second_level_cache_key, marshal, expires_in: expires_in)
     end
 
