@@ -16,3 +16,4 @@
 vendor/bundle
 .idea
 .ruby-version
+.byebug_history
