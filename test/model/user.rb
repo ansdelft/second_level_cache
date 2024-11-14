@@ -4,7 +4,7 @@ ActiveRecord::Base.connection.create_table(:users, force: true) do |t|
   t.text    :options
   t.text    :json_options
   t.text    :extras
-  t.string  :name, unique: true
+  t.string  :name
   t.string  :email
   t.integer :status, default: 0
   t.integer :books_count, default: 0
@@ -29,8 +29,8 @@ class User < ApplicationRecord
   CACHE_VERSION = 3
   second_level_cache(version: CACHE_VERSION, expires_in: 3.days)
 
-  serialize :options, Array
-  serialize :json_options, JSON if ::ActiveRecord::VERSION::STRING >= "4.1.0"
+  serialize :options, type: Array
+  serialize(:json_options, type: Hash, coder: JSON)
   store :extras, accessors: %i[tagline gender]
 
   has_one  :account, inverse_of: :user
@@ -41,7 +41,7 @@ class User < ApplicationRecord
   has_many :books
   has_many :images, as: :imagable
 
-  enum status: %i[active archived]
+  enum :status, %i[active archived]
 end
 
 class Namespace < ApplicationRecord

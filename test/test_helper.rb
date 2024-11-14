@@ -6,7 +6,6 @@ require "active_support/all"
 require "active_record_test_case_helper"
 require "database_cleaner"
 require "active_record"
-require "pry"
 require "byebug"
 
 ActiveSupport.test_order = :sorted if ActiveSupport.respond_to?(:test_order=)

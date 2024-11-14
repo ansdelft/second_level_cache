@@ -4,7 +4,7 @@ module SecondLevelCache
   module ActiveRecord
     module Associations
       module BelongsToAssociation
-        def find_target
+        def find_target(...)
           return super unless klass.second_level_cache_enabled?
           return super if klass.default_scopes.present? || reflection.scope
           return super if reflection.active_record_primary_key.to_s != klass.primary_key

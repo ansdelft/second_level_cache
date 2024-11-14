@@ -4,7 +4,7 @@
 [![build](https://github.com/hooopo/second_level_cache/actions/workflows/build.yml/badge.svg)](https://github.com/hooopo/second_level_cache/actions/workflows/build.yml)
 [![Code Climate](https://codeclimate.com/github/hooopo/second_level_cache.svg)](https://codeclimate.com/github/hooopo/second_level_cache)
 
-SecondLevelCache is a write-through and read-through caching library inspired by Cache Money and cache_fu, support ActiveRecord 4, ActiveRecord 5 and ActiveRecord 6.
+SecondLevelCache is a write-through and read-through caching library inspired by Cache Money and cache_fu, support ActiveRecord 7.2 and ActiveRecord 8.
 
 Read-Through: Queries by ID, like `current_user.articles.find(params[:id])`, will first look in cache store and then look in the database for the results of that query. If there is a cache miss, it will populate the cache.
 
@@ -14,34 +14,8 @@ Write-Through: As objects are created, updated, and deleted, all of the caches a
 
 In your gem file:
 
-ActiveRecord 7
-
 ```ruby
 gem 'second_level_cache', '~> 2.7'
-```
-
-ActiveRecord 5.2 and 6.0:
-
-```ruby
-gem 'second_level_cache', '~> 2.6.3'
-```
-
-ActiveRecord 5.0.x, 5.1.x:
-
-```ruby
-gem 'second_level_cache', '~> 2.3.0'
-```
-
-For ActiveRecord 4:
-
-```ruby
-gem "second_level_cache", "~> 2.1.9"
-```
-
-For ActiveRecord 3:
-
-```ruby
-gem "second_level_cache", "~> 1.6"
 ```
 
 ## Usage
