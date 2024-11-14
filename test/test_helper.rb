@@ -7,6 +7,8 @@ require "active_record_test_case_helper"
 require "database_cleaner"
 require "active_record"
 require "pry"
+require "byebug"
+
 ActiveSupport.test_order = :sorted if ActiveSupport.respond_to?(:test_order=)
 # Force hook :active_record on_load event to make sure loader can work.
 ActiveSupport.run_load_hooks(:active_record, ActiveRecord::Base)
